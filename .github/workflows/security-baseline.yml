@@ -1,0 +1,22 @@
+name: Endor Labs Baseline Security Pipeline
+
+on:
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  security-pipeline:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Opensource Security SCA
+        uses: endorlabs/github-action@802fa65ba7c140405ee52d1c806cfdb647f8f743 # v1.1.4
+        with:
+          namespace: 'ananth-learn'
+          scan_dependencies: true
+          scan_secrets: true
+          pr: false
