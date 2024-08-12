@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['checkout', '${BRANCH_NAME}']
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args: 
+      - '-c'
+      - |
+        echo ${BRANCH_NAME}
+        pwd
+        ls -l
+        git branch
+
+options:
+  logging: 'CLOUD_LOGGING_ONLY'
