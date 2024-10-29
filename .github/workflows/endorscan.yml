@@ -33,7 +33,7 @@ jobs:
           enable_pr_comments: false
           endorctl_checksum: ${{ secrets.ENDORCTL_CHECKSUM }}
           endorctl_version: ${{ secrets.ENDORCTL_VERSION }}
-          namespace: ${{ secrets.ENDORCTL_NAMESPACE }}
+          namespace: "ananth-learn"
           scan_dependencies: true
           scan_secrets: true
           tags: "actor=${{ github.actor }},branch=${{ env.BRANCH_NAME }},pr=${{ github.event.number }},run-id=${{ github.run_id }}"
