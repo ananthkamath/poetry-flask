@@ -31,9 +31,9 @@ jobs:
         uses: endorlabs/github-action@802fa65ba7c140405ee52d1c806cfdb647f8f743 # v1.1.4
         with:
           enable_pr_comments: false
-          endorctl_checksum: ${{ env.ENDORCTL_CHECKSUM }}
-          endorctl_version: ${{ env.ENDORCTL_VERSION }}
-          namespace: ${{ env.ENDORCTL_NAMESPACE }}
+          endorctl_checksum: ${{ secrets.ENDORCTL_CHECKSUM }}
+          endorctl_version: ${{ secrets.ENDORCTL_VERSION }}
+          namespace: ${{ secrets.ENDORCTL_NAMESPACE }}
           scan_dependencies: true
           scan_secrets: true
           tags: "actor=${{ github.actor }},branch=${{ env.BRANCH_NAME }},pr=${{ github.event.number }},run-id=${{ github.run_id }}"
