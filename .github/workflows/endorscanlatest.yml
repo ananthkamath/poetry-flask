@@ -1,0 +1,37 @@
+name: Endor Labs Security Pipeline
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  security-pipeline:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install poetry
+          python3 -m venv venv
+          source venv/bin/activate
+          poetry install
+      - name: Endor Labs SCA Security
+        uses: endorlabs/github-action@802fa65ba7c140405ee52d1c806cfdb647f8f743 # v1.1.4
+        with:
+          enable_pr_comments: false
+          namespace: "ananth-learn"
+          scan_dependencies: true
+          scan_secrets: true
+          tags: "actor=${{ github.actor }},branch=${{ env.BRANCH_NAME }},pr=${{ github.event.number }},run-id=${{ github.run_id }}"
