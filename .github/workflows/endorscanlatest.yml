@@ -28,7 +28,7 @@ jobs:
           source venv/bin/activate
           poetry install
       - name: Endor Labs SCA Security
-        uses: endorlabs/github-action@802fa65ba7c140405ee52d1c806cfdb647f8f743 # v1.1.4
+        uses: endorlabs/github-action@main
         with:
           enable_pr_comments: false
           namespace: "ananth-learn"
